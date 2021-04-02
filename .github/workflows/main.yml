@@ -1,0 +1,21 @@
+name: Test
+
+on:
+  push:
+    branches: ['master']
+  pull_request:
+    branches: ['master']
+
+jobs:
+  test1:
+    name: test 1
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: checkout codes
+      uses: actions/checkout@v2
+
+    - name: test environment variable
+      run: |
+        echo "== HELLO from GHA =="
+        ./ms.sh
