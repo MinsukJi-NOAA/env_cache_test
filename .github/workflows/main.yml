@@ -19,4 +19,14 @@ jobs:
       run: |
         echo "== HELLO from GHA =="
         ./ms.sh
-        ./pt.py
+        echo ${{ github.event.repository.owner.name }}
+        echo ${{ github.event.repository.name }}
+
+#    - name: graphql
+#      uses: octokit/graphql-actions@v2.x
+#      id: trial
+#      with:
+#        query:
+#        owner: 
+#        repo:
+#      env:
