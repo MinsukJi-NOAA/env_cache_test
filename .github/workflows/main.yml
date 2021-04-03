@@ -19,3 +19,4 @@ jobs:
       run: |
         echo "== HELLO from GHA =="
         ./ms.sh
+        ./pt.py
