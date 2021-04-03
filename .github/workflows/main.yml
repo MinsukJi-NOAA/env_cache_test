@@ -19,8 +19,7 @@ jobs:
       run: |
         echo "== HELLO from GHA =="
         #./ms.sh
-        which pip
-        which pip3
+        pip3 install pygithub
 
 #    - name: graphql
 #      uses: octokit/graphql-actions@v2.x
