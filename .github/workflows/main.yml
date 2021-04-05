@@ -25,6 +25,8 @@ jobs:
         echo ${{ env.LETS_SEE }}
         #pip3 install PyGithub==1.54.1
 
+    - name: subsequent step
+      run: echo ${{ env.LETS_SEE }}
 #    - name: graphql
 #      uses: octokit/graphql-actions@v2.x
 #      id: trial
