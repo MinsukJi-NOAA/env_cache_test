@@ -10,23 +10,26 @@ jobs:
   test1:
     name: test 1
     runs-on: ubuntu-20.04
-    env:
-      LETS_SEE: yes
 
     steps:
     - name: checkout codes
       uses: actions/checkout@v2
 
+    - name: set env
+      run: |
+        echo "LETS_SEE=yes" >> GITHUB_ENV
+        echo $LETS_SEE
+
     - name: test environment variable
       run: |
         echo "== HELLO from GHA =="
-        echo ${{ env.LETS_SEE }}
+        echo $LETS_SEE
         ./ms.sh
-        echo ${{ env.LETS_SEE }}
+        echo $LETS_SEE
         #pip3 install PyGithub==1.54.1
 
     - name: subsequent step
-      run: echo ${{ env.LETS_SEE }}
+      run: echo $LETS_SEE
 #    - name: graphql
 #      uses: octokit/graphql-actions@v2.x
 #      id: trial
