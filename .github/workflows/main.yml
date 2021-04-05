@@ -10,7 +10,8 @@ jobs:
   test1:
     name: test 1
     runs-on: ubuntu-20.04
-    env: LETS_SEE: yes
+    env:
+      LETS_SEE: yes
 
     steps:
     - name: checkout codes
