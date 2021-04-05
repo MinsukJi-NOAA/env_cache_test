@@ -17,7 +17,7 @@ jobs:
 
     - name: set env
       run: |
-        echo "LETS_SEE=yes" >> GITHUB_ENV
+        echo "LETS_SEE=yes" >> $GITHUB_ENV
         echo $LETS_SEE
 
     - name: test environment variable
