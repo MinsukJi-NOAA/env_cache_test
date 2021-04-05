@@ -18,8 +18,8 @@ jobs:
     - name: test environment variable
       run: |
         echo "== HELLO from GHA =="
-        #./ms.sh
-        pip3 install pygithub
+        ./ms.sh
+        #pip3 install PyGithub==1.54.1
 
 #    - name: graphql
 #      uses: octokit/graphql-actions@v2.x
