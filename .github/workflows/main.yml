@@ -32,7 +32,7 @@ jobs:
           url=${{github.event.pull_request.head.repo.git_commits_url}}
           url=$(echo $url | sed "s:{/sha}:/$sha:")
           echo $url
-          message="$(curl -sS -H "Accept: application/vnd.github.v3+json" $url | jq -r '.message')"
+          message="$(curl -sS -H "Accept: application/vnd.github.v3+json" $url | jq '.message')"
           echo $message
           echo '::set-output name=commit_comment::"'"${message}"'"'
           echo "${{ needs.job1.outputs.commit_comment }}"
