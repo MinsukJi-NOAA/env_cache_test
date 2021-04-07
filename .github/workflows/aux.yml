@@ -1,0 +1,40 @@
+name: Manage workflows
+
+on:
+  workflow_run:
+    workflows: ["Test"]
+    types:
+      - requested
+
+jobs:
+  job1:
+    name: aux job 1
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: checkout codes
+      uses: actions/checkout@v2
+
+    - name: cancel workflow
+      run: |
+        cd ${GITHUB_WORKSPACE}
+        repo="{GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/actions/runs"
+        tr_id1=$(cat ${GITHUB_EVENT_PATH} | ./json_helper.py get_trigger_id)
+        echo "trigger id1 is $tr_id1"
+        tr_id2=$(cat ${GITHUB_EVENT_PATH} | jq -r'.workflow_run.id')
+        echo "trigger id2 is $tr_id2"
+        tr_br1=$(cat ${GITHUB_EVENT_PATH} | ./json_helper.py get_trigger_br)
+        echo "trigger br1 is $tr_br1"
+        tr_br2=$(cat ${GITHUB_EVENT_PATH} | jq -r '.workflow_run.head_branch')
+        echo "trigger br2 is $tr_br2"
+        check1=$(cat ${GITHUB_EVENT_PATH} | ./json_helper.py check_run)
+        echo "check1 is $check1"
+        message="$(cat ${GITHUB_EVENT_PATH} | jq '.head_commit.message')"
+        echo $message
+        cat ${GITHUB_EVENT_PATH} | jq '.head_commit.message' | grep run-ci >/dev/null 2>&1 && d=$? || d=$?
+        if [[ $d .eq. 0 ]]; then
+          check2=yes
+        else
+          check2=no
+        fi
+        echo "check2 is $check2"
