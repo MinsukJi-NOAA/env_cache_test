@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: ['master']
 env:
-  LETS_SEE:
+  LETS_SEE: initial
 
 jobs:
   job1:
@@ -19,7 +19,7 @@ jobs:
 
     - name: set env
       run: |
-        LETS_SEE=$((1+1))
+        echo "LETS_SEE=$((1+1))" >> $GITHUB_ENV
         echo $LETS_SEE
         echo ${{ env.LETS_SEE }}
 
