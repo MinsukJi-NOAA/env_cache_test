@@ -29,8 +29,10 @@ jobs:
     name: job 2
     needs: job1
     runs-on: ubuntu-20.04
+    if: contains( needs.job1.outputs.commit_comment, 'run-ci')
 
     steps:
     - name: check commit comment
       run: |
+        echo "Hey we are in job 2!"
         echo ${{ needs.job1.outputs.commit_comment }}
