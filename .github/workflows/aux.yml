@@ -15,6 +15,9 @@ jobs:
     - name: checkout codes
       uses: actions/checkout@v2
 
+    - name: print github event path
+      run: cat ${GITHUB_EVENT_PATH}
+
     - name: cancel workflows
       run: |
         cd ${GITHUB_WORKSPACE}
@@ -29,7 +32,7 @@ jobs:
         echo "trigger br2 is $tr_br2"
         check1=$(cat ${GITHUB_EVENT_PATH} | ./json_helper.py check_run)
         echo "check1 is $check1"
-        message="$(cat ${GITHUB_EVENT_PATH} | jq '.head_commit.message')"
+        message="$(cat ${GITHUB_EVENT_PATH} | jq '.workflow_run.head_commit.message')"
         echo $message
         cat ${GITHUB_EVENT_PATH} | jq '.head_commit.message' | grep run-ci >/dev/null 2>&1 && d=$? || d=$?
         if [[ $d -eq 0 ]]; then
