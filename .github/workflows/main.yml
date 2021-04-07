@@ -34,7 +34,7 @@ jobs:
           echo $url
           message="$(curl -sS -H "Accept: application/vnd.github.v3+json" $url | jq '.message')"
           echo $message
-          echo '::set-output name=commit_comment::"'"${message}"'"'
+          echo "::set-output name=commit_comment::${message}"
           echo "${{ needs.job1.outputs.commit_comment }}"
         elif [[ ${{github.event_name}} == "push" ]]; then
           echo "::set-output name=commit_comment::$(git log --format=%B -n 1 ${{ github.event.after }})"
