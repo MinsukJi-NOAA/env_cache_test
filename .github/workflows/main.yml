@@ -21,7 +21,7 @@ jobs:
         echo "1: $LETS_SEE"
 
     - name: check_env_in_another_step
-      run: echo "Hello"
+      run: echo "2: $LETS_SEE"
 
   job2:
     name: job 2
@@ -29,4 +29,4 @@ jobs:
 
     steps:
     - name: check env in another job
-      run: echo "4 Hello"
+      run: echo "3: $LETS_SEE"
