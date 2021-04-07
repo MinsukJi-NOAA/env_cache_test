@@ -26,13 +26,14 @@ jobs:
     - name: check run or not
       id: check
       run: |
-        if [[ -n ${{github.event.after}} ]]; then
-          echo "We are in PUSH mode"
-        elif [[ -n ${{github.event.pull_request}} ]]; then
-          echo "We are in PULL REQUEST mode"
-        else
-          echo "ERROR"
-        fi
+        #if [[ -n ${{github.event.after}} ]]; then
+        #  echo "::set-output name=commit_comment::$(git log --format=%B -n 1 ${{ github.event.after }})"
+        #else
+        sha=${{github.event.pull_request.head.sha}}
+        echo $sha
+        url=${{github.event.pull_request.head.repo.git_commits_url}}
+        echo $url
+        #fi
 
 #    - name: check run or not
 #      id: check
