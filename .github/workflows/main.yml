@@ -28,19 +28,19 @@ jobs:
       run: |
         if [[ ${{github.event_name}} == "pull_request" ]]; then
           sha=${{github.event.pull_request.head.sha}}
-          echo $sha
+          echo "sha is $sha"
           url=${{github.event.pull_request.head.repo.git_commits_url}}
           url=$(echo $url | sed "s:{/sha}:/$sha:")
-          echo $url
+          echo "url is $url"
           message="$(curl -sS -H "Accept: application/vnd.github.v3+json" $url | jq '.message')"
           echo $message
           echo "::set-output name=commit_comment::${message}"
         elif [[ ${{github.event_name}} == "push" ]]; then
           sha=${{github.event.after}}
-          echo $sha
+          echo "sha is $sha"
           url=${{github.event.repository.git_commits_url}}
           url=$(echo $url | sed "s:{/sha}:/$sha:")
-          echo $url
+          echo "url is $url"
           message="$(curl -sS -H "Accept: application/vnd.github.v3+json" $url | jq '.message')"
           echo $message
           echo "::set-output name=commit_comment::${message}"
