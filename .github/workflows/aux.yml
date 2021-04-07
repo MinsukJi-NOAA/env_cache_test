@@ -34,7 +34,7 @@ jobs:
         echo "check1 is $check1"
         message="$(cat ${GITHUB_EVENT_PATH} | jq '.workflow_run.head_commit.message')"
         echo $message
-        cat ${GITHUB_EVENT_PATH} | jq '.head_commit.message' | grep run-ci >/dev/null 2>&1 && d=$? || d=$?
+        cat ${GITHUB_EVENT_PATH} | jq '.workflow_run.head_commit.message' | grep run-ci >/dev/null 2>&1 && d=$? || d=$?
         if [[ $d -eq 0 ]]; then
           check2=yes
         else
