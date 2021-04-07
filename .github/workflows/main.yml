@@ -38,7 +38,8 @@ jobs:
         elif [[ ${{github.event_name}} == "push" ]]; then
           sha=${{github.event.after}}
           echo $sha
-          url=${{github.event.head_commit.url}}
+          url=${{github.event.repository.git_commits_url}}
+          url=$(echo $url | sed "s:{/sha}:/$sha:")
           echo $url
           message="$(curl -sS -H "Accept: application/vnd.github.v3+json" $url | jq '.message')"
           echo $message
