@@ -29,8 +29,7 @@ jobs:
         if [[ ${{github.event_name}} == "pull_request" ]]; then
           sha=${{github.event.pull_request.head.sha}}
           echo "sha is $sha"
-          url=${{github.event.pull_request.head.repo.git_commits_url}}
-          url=$(echo $url | sed "s:{/sha}:/$sha:")
+          url=$(echo ${{github.event.pull_request.head.repo.git_commits_url}} | sed "s:{/sha}:/$sha:")
           echo "url is $url"
           message="$(curl -sS -H "Accept: application/vnd.github.v3+json" $url | jq '.message')"
           echo $message
@@ -38,8 +37,7 @@ jobs:
         elif [[ ${{github.event_name}} == "push" ]]; then
           sha=${{github.event.after}}
           echo "sha is $sha"
-          url=${{github.event.repository.git_commits_url}}
-          url=$(echo $url | sed "s:{/sha}:/$sha:")
+          url=$(echo ${{github.event.repository.git_commits_url}} | sed "s:{/sha}:/$sha:")
           echo "url is $url"
           message="$(curl -sS -H "Accept: application/vnd.github.v3+json" $url | jq '.message')"
           echo $message
