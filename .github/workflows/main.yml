@@ -22,16 +22,17 @@ jobs:
         echo "1: $LETS_SEE"
         LETS_SEE=$(( 1+1 ))
         echo "2: $LETS_SEE"
+        echo "3: ${{ env.LETS_SEE }}"
 
     - name: check env in another step
-      run: echo "3: $LETS_SEE"
+      run: echo "4: ${{ env.LETS_SEE }}"
   job2:
     name: job 2
     runs-on: ubuntu-20.04
 
     steps:
     -name: check env in another job
-     run: echo "4: $LETS_SEE"
+     run: echo "5: ${{ env.LETS_SEE }}"
   
 #        echo "LETS_SEE=yes" >> $GITHUB_ENV
 #    - name: test environment variable
