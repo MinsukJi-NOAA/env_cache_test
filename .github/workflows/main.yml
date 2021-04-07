@@ -21,7 +21,7 @@ jobs:
         echo "1: $LETS_SEE"
 
     - name: check_env_in_another_step
-      run: echo "2: $LETS_SEE"
+      run: echo "Hello"
 
   job2:
     name: job 2
