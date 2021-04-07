@@ -29,7 +29,7 @@ jobs:
 
     steps:
     -name: check env in another job
-     run: echo "4: $LETS_SEE"
+     run: echo "4 $LETS_SEE"
   
 #        echo "LETS_SEE=yes" >> $GITHUB_ENV
 #    - name: test environment variable
