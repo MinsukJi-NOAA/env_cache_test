@@ -5,28 +5,23 @@ on:
     branches: ['master']
   pull_request:
     branches: ['master']
-env:
-  LETS_SEE: initial
 
 jobs:
   job1:
     name: job 1
     runs-on: ubuntu-20.04
 
+    outputs:
+      commit_comment: ${{ steps.check.outputs.commit_comment }}
+
     steps:
     - name: checkout codes
       uses: actions/checkout@v2
 
-    - name: set env
+    - name: check run or not
+      id: check
       run: |
-        echo "LETS_SEE=$((1+1))" >> $GITHUB_ENV
-        echo $LETS_SEE
-        echo ${{ env.LETS_SEE }}
-
-    - name: check_env_in_another_step
-      run: |
-        echo $LETS_SEE
-        echo ${{ env.LETS_SEE }}
+        echo "::set-output name=commit_comment::$(git log --format=%B -n 1 $ {{ github.event.after }})"
 
   job2:
     name: job 2
@@ -34,7 +29,6 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-    - name: check env in another job
+    - name: check commit comment
       run: |
-        echo $LETS_SEE
-        echo ${{ env.LETS_SEE }}
+        echo ${{ needs.job1.outputs.commit_comment }}
