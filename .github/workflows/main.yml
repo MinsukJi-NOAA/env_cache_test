@@ -30,15 +30,3 @@ jobs:
     steps:
     -name: check env in another job
      run: echo "4 Hello"
-  
-#        echo "LETS_SEE=yes" >> $GITHUB_ENV
-#    - name: test environment variable
-#      run: |
-#        echo "== HELLO from GHA =="
-#        echo $LETS_SEE
-#        ./ms.sh
-#        echo $LETS_SEE
-#        #pip3 install PyGithub==1.54.1
-#
-#    - name: subsequent step
-#      run: echo $LETS_SEE
