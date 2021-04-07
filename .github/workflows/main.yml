@@ -34,5 +34,5 @@ jobs:
     steps:
     - name: check commit comment
       run: |
-        echo "Hey we are in job 2!"
+        echo "Hey we are in job 2!!"
         echo ${{ needs.job1.outputs.commit_comment }}
