@@ -5,6 +5,7 @@ on:
     branches: ['master']
   pull_request:
     branches: ['master']
+env: LETS_SEE:
 
 jobs:
   test1:
@@ -17,24 +18,18 @@ jobs:
 
     - name: set env
       run: |
-        echo "LETS_SEE=yes" >> $GITHUB_ENV
-        echo $LETS_SEE
+        echo "1: $LETS_SEE"
+        LETS_SEE=$(( 1+1 ))
+        echo "2: $LETS_SEE"
 
-    - name: test environment variable
-      run: |
-        echo "== HELLO from GHA =="
-        echo $LETS_SEE
-        ./ms.sh
-        echo $LETS_SEE
-        #pip3 install PyGithub==1.54.1
-
-    - name: subsequent step
-      run: echo $LETS_SEE
-#    - name: graphql
-#      uses: octokit/graphql-actions@v2.x
-#      id: trial
-#      with:
-#        query:
-#        owner: ufs-community
-#        repo: ufs-weather-model
-#      env:
+#        echo "LETS_SEE=yes" >> $GITHUB_ENV
+#    - name: test environment variable
+#      run: |
+#        echo "== HELLO from GHA =="
+#        echo $LETS_SEE
+#        ./ms.sh
+#        echo $LETS_SEE
+#        #pip3 install PyGithub==1.54.1
+#
+#    - name: subsequent step
+#      run: echo $LETS_SEE
