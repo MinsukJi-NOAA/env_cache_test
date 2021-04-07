@@ -20,7 +20,7 @@ jobs:
         echo "LETS_SEE=$((1+1))" >> $GITHUB_ENV
         echo "1: $LETS_SEE"
 
-    - name: check env in another step
+    - name: check_env_in_another_step
       run: echo "2: $LETS_SEE"
 
   job2:
