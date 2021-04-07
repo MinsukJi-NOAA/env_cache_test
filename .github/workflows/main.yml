@@ -28,5 +28,5 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-    -name: check env in another job
-     run: echo "4 Hello"
+    - name: check env in another job
+      run: echo "4 Hello"
