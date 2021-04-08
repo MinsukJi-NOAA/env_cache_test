@@ -58,7 +58,7 @@ jobs:
 
     - name: Cancel current job
       run: |
-        repo="{GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/actions/runs"
+        repo="${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/actions/runs"
         if [[ ${{needs.job1.outputs.currency}} == "fail" || ${{env.run-ci}} == "no" ]]; then
           echo "Canceling the current job because PR branch is not up to date or run-ci is not requested"
           echo "CURR_JOB=cancelled" >> $GITHUB_ENV
