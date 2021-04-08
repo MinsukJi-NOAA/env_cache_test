@@ -35,7 +35,7 @@ jobs:
 
     - name: print all actions runs
       run: |
-        repo="{GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/actions/runs"
+        repo="${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/actions/runs"
         curl -sS -H "Accept: application/vnd.github.v3+json" ${repo}
 
     - name: Check if run-ci is requested
